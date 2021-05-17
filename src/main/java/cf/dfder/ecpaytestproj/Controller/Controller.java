@@ -1,7 +1,10 @@
-package cf.dfder.ecpaytestproj;
+package cf.dfder.ecpaytestproj.Controller;
 
 
+import cf.dfder.ecpaytestproj.ECpayService;
+import cf.dfder.ecpaytestproj.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.aggregation.BooleanOperators;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,6 +30,13 @@ public class Controller {
         System.out.println(form);
         return new ResponseEntity<>(form,HttpStatus.OK);
     }
+    
+    @GetMapping("/init")
+    public ResponseEntity<?> Init(){
+        Order order = new Order();
+        return new ResponseEntity<>(ecpayservice.init(), HttpStatus.OK);
+    }
+    
     
 
 }
