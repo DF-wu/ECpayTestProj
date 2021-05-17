@@ -1,4 +1,4 @@
-package cf.dfder.ecpaytestproj;
+package cf.dfder.ecpaytestproj.services;
 
 import cf.dfder.ecpaytestproj.entity.Order;
 import cf.dfder.ecpaytestproj.repository.OrderRepo;
