@@ -27,7 +27,6 @@ public class Controller {
     @GetMapping("/test")
     public ResponseEntity<?> getCheckOut(){
         String form = ecpayservice.checkOut();
-        System.out.println(form);
         return new ResponseEntity<>(form,HttpStatus.OK);
     }
     
@@ -35,6 +34,13 @@ public class Controller {
     public ResponseEntity<?> Init(){
         Order order = new Order();
         return new ResponseEntity<>(ecpayservice.init(), HttpStatus.OK);
+    }
+    
+    
+    @GetMapping("/getlast")
+    public ResponseEntity<?> getlast(){
+        
+        return new ResponseEntity<>(ecpayservice.getLastSerialNumber(), HttpStatus.OK);
     }
     
     

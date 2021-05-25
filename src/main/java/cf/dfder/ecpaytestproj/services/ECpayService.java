@@ -22,7 +22,8 @@ public class ECpayService {
     @Autowired
     public ECpayService(OrderRepo orderrepo){
         this.orderrepo = orderrepo;
-        lastSerialNumber = 0;
+        lastSerialNumber = getLastSerialNumber();
+        
         ecpaySDK = new AllInOne("");
     }
     
@@ -57,32 +58,38 @@ public class ECpayService {
         order.setSerialNumber(lastSerialNumber);
         
         AioCheckOutALL obj = new AioCheckOutALL();
-        obj.setMerchantTradeNo(String.valueOf(lastSerialNumber));
+        
+        obj.setMerchantTradeNo(UUID.randomUUID().toString().substring(0,20).replace("-",""));
         obj.setMerchantTradeDate("2017/01/01 08:05:23");
         obj.setTotalAmount("50");
         obj.setTradeDesc("test Description");
         obj.setItemName("TestItem");
         obj.setReturnURL("http://211.23.128.214:5000");
         obj.setNeedExtraPaidInfo("N");
+        
         String form = ecpaySDK.aioCheckOut(obj, null);
-    
+        
         orderrepo.save(order);
         
         System.out.println("from check out service" + form);
+    
+        System.out.println(obj.getMerchantTradeNo());
+        System.out.println(order.getSerialNumber());
         return form;
     }
     
     
-    public String getLastSerialNumber(){
+    public int getLastSerialNumber(){
         ArrayList<Order> orders = new ArrayList<>();
         orders = (ArrayList<Order>) orderrepo.findAll();
-    
-    
+        
+        
+        // increase
         Comparator<Order> comparator = new Comparator<Order>() {
             @Override
             public int compare(Order o1, Order o2)
             {
-                return o1.getSerialNumber() - o2.getSerialNumber();
+                return  o2.getSerialNumber() - o1.getSerialNumber();
             }
         };
         Collections.sort(orders,comparator);
@@ -90,7 +97,11 @@ public class ECpayService {
     
         System.out.println(orders);
         
-        return orders.get(0).toString();
+        int number = orders.get(0).getSerialNumber();
+    
+    
+        System.out.println("now last number is " + number);
+        return number;
     }
     
     
