@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 
 @CrossOrigin("*")
@@ -43,6 +46,12 @@ public class Controller {
         return new ResponseEntity<>(ecpayservice.getLastSerialNumber(), HttpStatus.OK);
     }
     
+    
+    @GetMapping("/google")
+    public ResponseEntity<?> search(){
+        System.out.println(ecpayservice.getNowTime());
+        return new ResponseEntity<>(ecpayservice.addGoogleSearchPath("clientBackURL:Client端返回特店的按鈕連結"), HttpStatus.OK);
+    }
     
 
 }
