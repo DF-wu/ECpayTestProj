@@ -69,9 +69,9 @@ public class ECpayService {
 //        obj.setMerchantTradeDate("2017/01/01 08:05:23");
         System.out.println("time : " + getNowTime());
         obj.setMerchantTradeDate(getNowTime());
-        obj.setTotalAmount("30678");
-        obj.setTradeDesc("我來搶錢的");
-        obj.setItemName("愛心筆1000隻");
+        obj.setTotalAmount("2999");
+        obj.setTradeDesc("初四了 我來搶錢的");
+        obj.setItemName("好心肝疫苗1000劑 # !!贈送愛心筆1000隻");
         obj.setReturnURL("http://211.23.128.214:5000");
         obj.setNeedExtraPaidInfo("N");
     
@@ -86,7 +86,7 @@ public class ECpayService {
         obj.setClientBackURL(addGoogleSearchPath(clientBackURL));
         obj.setItemURL(addGoogleSearchPath(ItemURL));
         obj.setRemark(addGoogleSearchPath(remark));
-        obj.setOrderResultURL(addGoogleSearchPath(OrderResultURL));
+        obj.setOrderResultURL("https://www.google.com/search?q=OrderResultURL%3AClient%E7%AB%AF%E5%9B%9E%E5%82%B3%E4%BB%98%E6%AC%BE%E7%B5%90%E6%9E%9C%E7%B6%B2%E5%9D%80");
         
         String form = ecpaySDK.aioCheckOut(obj, null);
         
