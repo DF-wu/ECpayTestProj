@@ -69,7 +69,7 @@ public class ECpayService {
 //        obj.setMerchantTradeDate("2017/01/01 08:05:23");
         System.out.println("time : " + getNowTime());
         obj.setMerchantTradeDate(getNowTime());
-        obj.setTotalAmount("2999");
+        obj.setTotalAmount("25678");
         obj.setTradeDesc("初四了 我來搶錢的");
         obj.setItemName("好心肝疫苗1000劑 # !!贈送愛心筆1000隻");
         obj.setReturnURL("http://211.23.128.214:5000");
